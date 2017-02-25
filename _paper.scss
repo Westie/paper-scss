@@ -1,0 +1,100 @@
+// the idea was shamelessly stolen from https://github.com/cognitom/paper-css
+// feel free to modify, released under no licence what so ever
+//  - westie@typefish.co.uk
+
+// create our template mixin
+@mixin sheet-size($size, $x, $y)
+{
+	// portrait
+	&.#{$size}
+	{
+		.sheet
+		{
+			width: $x;
+			height: $y;
+		}
+		
+		// fix for chrome issue #273306
+		@media print
+		{
+			&
+			{
+				width: $x;
+			}
+		}
+	}
+	
+	// landscape
+	&.#{$size}.landscape
+	{
+		.sheet
+		{
+			width: $y;
+			height: $x;
+		}
+		
+		// fix for chrome issue #273306
+		@media print
+		{
+			&
+			{
+				width: $y;
+			}
+		}
+	}
+}
+
+// set up the base of the page
+@media screen
+{
+	.sheet-wrap
+	{
+		background: #E0E0E0;
+		
+		.sheet
+		{
+			background: white;
+			box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
+			margin: 5mm;
+		}
+	}
+}
+
+// implement our mixins
+.sheet-wrap
+{
+	@include sheet-size("A0", 841mm, 1189mm);
+	@include sheet-size("A1", 594mm, 841mm);
+	@include sheet-size("A2", 420mm, 594mm);
+	@include sheet-size("A3", 297mm, 420mm);
+	@include sheet-size("A4", 210mm, 297mm);
+	@include sheet-size("A5", 148mm, 210mm);
+	@include sheet-size("A6", 105mm, 148mm);
+	@include sheet-size("A7", 74mm, 105mm);
+	@include sheet-size("A8", 52mm, 74mm);
+	@include sheet-size("A9", 37mm, 52mm);
+	@include sheet-size("A10", 26mm, 37mm);
+	@include sheet-size("B0", 1000mm, 1414mm);
+	@include sheet-size("B1", 707mm, 1000mm);
+	@include sheet-size("B2", 500mm, 707mm);
+	@include sheet-size("B3", 353mm, 500mm);
+	@include sheet-size("B4", 250mm, 353mm);
+	@include sheet-size("B5", 176mm, 250mm);
+	@include sheet-size("B6", 125mm, 176mm);
+	@include sheet-size("B7", 88mm, 125mm);
+	@include sheet-size("B8", 62mm, 88mm);
+	@include sheet-size("B9", 44mm, 62mm);
+	@include sheet-size("B10", 31mm, 44mm);
+	@include sheet-size("C0", 917mm, 1297mm);
+	@include sheet-size("C1", 648mm, 917mm);
+	@include sheet-size("C2", 458mm, 648mm);
+	@include sheet-size("C3", 324mm, 458mm);
+	@include sheet-size("C4", 229mm, 324mm);
+	@include sheet-size("C5", 162mm, 229mm);
+	@include sheet-size("C6", 114mm, 162mm);
+	@include sheet-size("C7", 81mm, 114mm);
+	@include sheet-size("C8", 57mm, 81mm);
+	@include sheet-size("C9", 40mm, 57mm);
+	@include sheet-size("C10", 28mm, 40mm);
+	@include sheet-size("DL", 110mm, 220mm);
+}
