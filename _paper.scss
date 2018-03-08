@@ -3,56 +3,53 @@
 //  - westie@typefish.co.uk
 
 // create our template mixin
-@mixin sheet-size($size, $x, $y)
-{
+@mixin sheet-size($size, $x, $y) {
 	// portrait
-	&.#{$size}
-	{
-		.sheet
-		{
+	&.#{$size} {
+		.sheet {
 			width: $x;
-			height: $y;
+			min-height: $y;
+			
+			&.sheet-fixed-height {
+				height: $y;
+				overflow: hidden;
+			}
 		}
 		
-		// fix for chrome issue #273306
-		@media print
-		{
-			&
-			{
+		@media print {
+			& {
 				width: $x;
 			}
+		}
+		
+		@page {
+			size: $x $y;
 		}
 	}
 	
 	// landscape
-	&.#{$size}.landscape
-	{
-		.sheet
-		{
+	&.#{$size}.landscape {
+		.sheet {
 			width: $y;
-			height: $x;
+			min-height: $x;
 		}
 		
-		// fix for chrome issue #273306
-		@media print
-		{
-			&
-			{
+		@media print {
+			& {
 				width: $y;
 			}
+		}
+		
+		@page {
+			size: $y $x;
 		}
 	}
 }
 
 // set up the base of the page
-@media screen
-{
-	.sheet-wrap
-	{
-		background: #E0E0E0;
-		
-		.sheet
-		{
+@media screen {
+	.sheet-wrap {
+		.sheet {
 			background: white;
 			box-shadow: 0 .5mm 2mm rgba(0,0,0,.3);
 			margin: 5mm;
@@ -61,8 +58,7 @@
 }
 
 // implement our mixins
-.sheet-wrap
-{
+.sheet-wrap {
 	@include sheet-size("A0", 841mm, 1189mm);
 	@include sheet-size("A1", 594mm, 841mm);
 	@include sheet-size("A2", 420mm, 594mm);
